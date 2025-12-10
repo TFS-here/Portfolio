@@ -25,9 +25,9 @@ const Admin = () => {
   const fetchData = async () => {
     try {
       let endpoint = '';
-      if (activeTab === 'projects') endpoint = 'http://localhost:5000/api/projects';
-      else if (activeTab === 'stats') endpoint = 'http://localhost:5000/api/stats';
-      else if (activeTab === 'messages') endpoint = 'http://localhost:5000/api/messages';
+      if (activeTab === 'projects') endpoint = 'https://portfolio-kkij.onrender.com/api/projects';
+      else if (activeTab === 'stats') endpoint = 'https://portfolio-kkij.onrender.com/api/stats';
+      else if (activeTab === 'messages') endpoint = 'https://portfolio-kkij.onrender.com/api/messages';
       
       const res = await axios.get(endpoint);
       setData(res.data);
@@ -41,7 +41,7 @@ const Admin = () => {
     e.preventDefault();
     try {
       const token = localStorage.getItem('token');
-      await axios.post('http://localhost:5000/api/auth/register', newAdmin, { headers: { 'x-auth-token': token } });
+      await axios.post('https://portfolio-kkij.onrender.com/api/auth/register', newAdmin, { headers: { 'x-auth-token': token } });
       alert("New Co-Admin Added Successfully!");
       setShowAdminForm(false);
       setNewAdmin({ email: '', password: '' });
@@ -69,7 +69,7 @@ const Admin = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const endpoint = activeTab === 'projects' ? 'http://localhost:5000/api/projects' : 'http://localhost:5000/api/stats';
+    const endpoint = activeTab === 'projects' ? 'https://portfolio-kkij.onrender.com/api/projects' : 'https://portfolio-kkij.onrender.com/api/stats';
     let payload = activeTab === 'projects' ? { ...projectForm, techStack: projectForm.techStack.split(',').map(t => t.trim()) } : statForm;
 
     try {
@@ -84,9 +84,9 @@ const Admin = () => {
   const handleDelete = async (id) => {
     if(!window.confirm("Delete this item?")) return;
     let endpoint = '';
-    if (activeTab === 'projects') endpoint = `http://localhost:5000/api/projects/${id}`;
-    else if (activeTab === 'stats') endpoint = `http://localhost:5000/api/stats/${id}`;
-    else if (activeTab === 'messages') endpoint = `http://localhost:5000/api/messages/${id}`;
+    if (activeTab === 'projects') endpoint = `https://portfolio-kkij.onrender.com/api/projects/${id}`;
+    else if (activeTab === 'stats') endpoint = `https://portfolio-kkij.onrender.com/api/stats/${id}`;
+    else if (activeTab === 'messages') endpoint = `https://portfolio-kkij.onrender.com/api/messages/${id}`;
     
     await axios.delete(endpoint);
     fetchData();

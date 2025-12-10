@@ -7,7 +7,7 @@ const CodingStats = () => {
   const [stats, setStats] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/stats')
+    axios.get('https://portfolio-kkij.onrender.com/api/stats')
       .then(res => setStats(res.data))
       .catch(err => console.error(err));
   }, []);
