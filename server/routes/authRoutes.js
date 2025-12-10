@@ -8,13 +8,13 @@ const auth = require('../middleware/auth'); // Import the middleware
 router.post('/register', auth, async (req, res) => {
   try {
     // 1. Check how many users exist
-    const userCount = await User.countDocuments();
+    // const userCount = await User.countDocuments();
 
-    // 2. SECURITY CHECK:
-    // If users exist AND the requester is NOT logged in, block them.
-    if (userCount > 0 && !req.user) {
-      return res.status(403).json("Admin already exists. You must login to create a new admin.");
-    }
+    // // 2. SECURITY CHECK:
+    // // If users exist AND the requester is NOT logged in, block them.
+    // if (userCount > 0 && !req.user) {
+    //   return res.status(403).json("Admin already exists. You must login to create a new admin.");
+   // }
 
     // 3. Create the user
     const salt = await bcrypt.genSalt(10);
