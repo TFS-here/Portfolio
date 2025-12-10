@@ -11,7 +11,12 @@ const app = express();
 
 // Middleware
 app.use(express.json());
-app.use(cors());
+// Update your CORS configuration
+app.use(cors({
+    origin: '*', // Allow all origins (Easiest for troubleshooting)
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
+}));
 app.use('/api/projects', projectRoutes);
 app.use('/api/stats', statRoutes); 
 app.use('/api/auth', authRoutes);
